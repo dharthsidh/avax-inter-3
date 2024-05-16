@@ -20,4 +20,13 @@ contract MyToken is ERC20 {
         require(to != address(0), "Invalid address");
         _mint(to, amount);
     }
+
+    function burn(uint256 amount) external {
+        _burn(msg.sender, amount);
+    }
+
+    function transfer(address to, uint256 amount) public override returns (bool) {
+        require(to != address(0), "Invalid address");
+        return super.transfer(to, amount);
+    }
 }
